@@ -646,3 +646,421 @@
   border-radius: 20px;
   border: 1px solid rgba(255, 107, 53, 0.3);
 }
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: #FF6B35;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.mobile-back-btn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: #FF6B35;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+/* Responsive Styles */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .chat-container {
+    max-width: 100%;
+  }
+
+  .sidebar {
+    width: 300px;
+  }
+
+  .message {
+    max-width: 80%;
+  }
+
+  .new-message-notification {
+    min-width: 250px;
+    max-width: 350px;
+    right: 10px;
+    top: 10px;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    border-right: none;
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .mobile-back-btn {
+    display: block;
+  }
+
+  .chat-area {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .sidebar-header {
+    padding: 70px 20px 20px 20px;
+  }
+
+  .sidebar-header h2 {
+    font-size: 20px;
+  }
+
+  .new-group-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .chat-header {
+    padding: 70px 15px 15px 15px;
+  }
+
+  .chat-header h3 {
+    font-size: 18px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .message-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .message {
+    max-width: 85%;
+  }
+
+  .message-content {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .messages-container {
+    padding: 15px;
+  }
+
+  .message-input-container {
+    padding: 15px;
+    flex-wrap: wrap;
+  }
+
+  .message-input {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .send-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .emoji-btn {
+    font-size: 20px;
+  }
+
+  .emoji-picker-container {
+    bottom: 70px;
+    left: 10px;
+  }
+
+  .online-users {
+    padding: 15px;
+  }
+
+  .online-user img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .online-user span {
+    font-size: 11px;
+  }
+
+  .chat-item {
+    padding: 12px 15px;
+  }
+
+  .chat-info {
+    font-size: 14px;
+  }
+
+  .chat-name {
+    font-size: 15px;
+  }
+
+  .last-message {
+    font-size: 13px;
+  }
+
+  .new-message-notification {
+    min-width: 280px;
+    max-width: calc(100% - 40px);
+    right: 20px;
+    top: 80px;
+    padding: 12px 15px;
+  }
+
+  .notification-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .notification-sender {
+    font-size: 14px;
+  }
+
+  .notification-content {
+    font-size: 13px;
+  }
+
+  .group-badge-header {
+    font-size: 11px;
+    padding: 3px 10px;
+    margin-left: 8px;
+  }
+
+  /* Modal adjustments for mobile */
+  .modal-content {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 20px !important;
+  }
+
+  .sidebar-footer {
+    padding: 12px 15px;
+  }
+
+  .footer-logout-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+  .sidebar-header h2 {
+    font-size: 18px;
+  }
+
+  .new-group-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .chat-header h3 {
+    font-size: 16px;
+  }
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .message-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .message {
+    max-width: 90%;
+  }
+
+  .message-content {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .message-time {
+    font-size: 10px;
+  }
+
+  .message-status {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .messages-container {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .message-input-container {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .message-input {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .send-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .emoji-btn {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .online-users {
+    padding: 12px;
+  }
+
+  .online-user img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .chat-item {
+    padding: 10px 12px;
+  }
+
+  .chat-section-header {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  .new-message-notification {
+    min-width: 260px;
+    top: 70px;
+    right: 10px;
+    padding: 10px 12px;
+  }
+
+  .notification-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .notification-sender {
+    font-size: 13px;
+  }
+
+  .notification-content {
+    font-size: 12px;
+  }
+
+  .group-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+
+  .group-badge-header {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .sidebar-header {
+    padding: 60px 15px 15px 15px;
+  }
+
+  .chat-header {
+    padding: 60px 15px 10px 15px;
+  }
+
+  .messages-container {
+    padding: 10px;
+  }
+
+  .message-input-container {
+    padding: 10px;
+  }
+
+  .online-users {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+}
+
+/* Mobile Sidebar Overlay */
+.mobile-sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .mobile-sidebar-overlay.active {
+    display: block;
+  }
+
+  /* Better touch targets for mobile */
+  button, .chat-item, .online-user {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent text selection on double tap */
+  .chat-item, .online-user, button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Allow text selection in messages */
+  .message-text {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Smooth scrolling on mobile */
+  .messages-container, .chat-list, .online-users {
+    -webkit-overflow-scrolling: touch;
+  }
+}

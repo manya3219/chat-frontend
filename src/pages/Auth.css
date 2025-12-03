@@ -167,3 +167,162 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+
+/* Responsive Styles */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .auth-box {
+    max-width: 500px;
+    padding: 35px;
+  }
+
+  .auth-header h1 {
+    font-size: 32px;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 15px;
+  }
+
+  .auth-box {
+    padding: 30px 25px;
+    max-width: 100%;
+  }
+
+  .auth-header h1 {
+    font-size: 28px;
+  }
+
+  .auth-header p {
+    font-size: 14px;
+  }
+
+  .tab-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .error-message {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 10px;
+  }
+
+  .auth-box {
+    padding: 25px 20px;
+    border-radius: 15px;
+  }
+
+  .auth-header {
+    margin-bottom: 25px;
+  }
+
+  .auth-header h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .auth-header p {
+    font-size: 13px;
+  }
+
+  .auth-tabs {
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+
+  .tab-btn {
+    padding: 10px 8px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .auth-form {
+    gap: 18px;
+  }
+
+  .form-group {
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+  }
+
+  .form-group input {
+    padding: 11px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .submit-btn {
+    padding: 11px;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+
+  .error-message {
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+
+  .loading {
+    font-size: 16px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .auth-container {
+    padding: 10px;
+  }
+
+  .auth-box {
+    padding: 20px;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .auth-header {
+    margin-bottom: 20px;
+  }
+
+  .auth-header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .auth-tabs {
+    margin-bottom: 20px;
+  }
+
+  .auth-form {
+    gap: 15px;
+  }
+}

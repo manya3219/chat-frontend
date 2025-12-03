@@ -51,6 +51,7 @@ const Chat = () => {
   const [showRequests, setShowRequests] = useState(false);
   const [notification, setNotification] = useState(null);
   const [showChatMenu, setShowChatMenu] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const messagesEndRef = useRef(null);
   const selectedChatRef = useRef(null);
   const navigate = useNavigate();
@@ -381,6 +382,7 @@ const Chat = () => {
     setSelectedChat(chat);
     selectedChatRef.current = chat;
     fetchMessages(chat._id);
+    setIsMobileSidebarOpen(false); // Close sidebar on mobile when chat is selected
   };
 
   const handleUserClick = async (userId, isFriend) => {
@@ -404,6 +406,7 @@ const Chat = () => {
       selectedChatRef.current = data;
       fetchMessages(data._id);
       setShowAllUsers(false);
+      setIsMobileSidebarOpen(false); // Close sidebar on mobile
     } catch (error) {
       console.error('Error creating chat:', error);
     }
@@ -584,8 +587,34 @@ const Chat = () => {
         </motion.div>
       )}
       
+      {/* Mobile Menu Toggle */}
+      {!selectedChat && (
+        <button 
+          className="mobile-menu-toggle"
+          onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+        >
+          ☰
+        </button>
+      )}
+      
+      {/* Mobile Back Button */}
+      {selectedChat && (
+        <button 
+          className="mobile-back-btn"
+          onClick={() => setSelectedChat(null)}
+        >
+          ← Back
+        </button>
+      )}
+      
+      {/* Mobile Sidebar Overlay */}
+      <div 
+        className={`mobile-sidebar-overlay ${isMobileSidebarOpen ? 'active' : ''}`}
+        onClick={() => setIsMobileSidebarOpen(false)}
+      />
+      
       <div className="chat-container">
-      <div className="sidebar">
+      <div className={`sidebar ${isMobileSidebarOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
             <h2>💬 Chats</h2>
@@ -975,17 +1004,21 @@ const Chat = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 1000
+          zIndex: 1000,
+          padding: '20px'
         }}>
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
+            className="modal-content"
             style={{
               background: '#252525',
               padding: '30px',
               borderRadius: '15px',
-              width: '90%',
-              maxWidth: '500px'
+              width: '100%',
+              maxWidth: '500px',
+              maxHeight: '90vh',
+              overflowY: 'auto'
             }}
           >
             <h3 style={{ color: '#FF6B35', marginBottom: '20px' }}>Create Group</h3>
