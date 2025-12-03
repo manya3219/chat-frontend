@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import EmojiPicker from 'emoji-picker-react';
 import '../App.css';
 
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'https://chat-backend-s13a.onrender.com';
 let socket;
 
 // Memoized ChatItem component to prevent unnecessary re-renders
@@ -209,7 +209,7 @@ const Chat = () => {
   const fetchChats = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get('http://localhost:5000/api/chats', {
+      const { data } = await axios.get('https://chat-backend-s13a.onrender.com/api/chats', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -229,7 +229,7 @@ const Chat = () => {
   const fetchOnlineUsers = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get('http://localhost:5000/api/users/online', {
+      const { data } = await axios.get('https://chat-backend-s13a.onrender.com/api/users/online', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOnlineUsers(data);
@@ -241,7 +241,7 @@ const Chat = () => {
   const fetchAllUsers = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get('http://localhost:5000/api/users', {
+      const { data } = await axios.get('https://chat-backend-s13a.onrender.com/api/users', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAllUsers(data);
@@ -253,7 +253,7 @@ const Chat = () => {
   const fetchFriendRequests = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get('http://localhost:5000/api/friends/requests', {
+      const { data } = await axios.get('https://chat-backend-s13a.onrender.com/api/friends/requests', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFriendRequests(data);
@@ -265,7 +265,7 @@ const Chat = () => {
   const sendFriendRequest = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:5000/api/friends/request/${userId}`, {}, {
+      await axios.post(`https://chat-backend-s13a.onrender.com/api/friends/request/${userId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -279,7 +279,7 @@ const Chat = () => {
   const acceptFriendRequest = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:5000/api/friends/accept/${userId}`, {}, {
+      await axios.post(`https://chat-backend-s13a.onrender.com/api/friends/accept/${userId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -295,7 +295,7 @@ const Chat = () => {
   const rejectFriendRequest = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:5000/api/friends/reject/${userId}`, {}, {
+      await axios.post(`https://chat-backend-s13a.onrender.com/api/friends/reject/${userId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -309,7 +309,7 @@ const Chat = () => {
   const fetchMessages = async (chatId) => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get(`http://localhost:5000/api/messages/${chatId}`, {
+      const { data } = await axios.get(`https://chat-backend-s13a.onrender.com/api/messages/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages(data);
@@ -326,7 +326,7 @@ const Chat = () => {
     try {
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5000/api/messages/read/${chatId}`, {}, {
+      await axios.put(`https://chat-backend-s13a.onrender.com/api/messages/read/${chatId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -347,7 +347,7 @@ const Chat = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/messages/clear/${selectedChat._id}`, {
+      await axios.delete(`https://chat-backend-s13a.onrender.com/api/messages/clear/${selectedChat._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -358,6 +358,23 @@ const Chat = () => {
       console.error('Error clearing chat:', error);
       alert('Failed to clear chat');
     }
+  };
+
+  const handleLogout = () => {
+    const confirmed = window.confirm('Are you sure you want to logout?');
+    if (!confirmed) return;
+
+    // Disconnect socket
+    if (socket) {
+      socket.disconnect();
+    }
+
+    // Clear local storage
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    // Navigate to login page
+    navigate('/');
   };
 
   const handleChatSelect = (chat) => {
@@ -374,7 +391,7 @@ const Chat = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.post('http://localhost:5000/api/chats', 
+      const { data } = await axios.post('https://chat-backend-s13a.onrender.com/api/chats', 
         { userId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -401,7 +418,7 @@ const Chat = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.post('http://localhost:5000/api/messages',
+      const { data } = await axios.post('https://chat-backend-s13a.onrender.com/api/messages',
         { content: messageContent, chatId: selectedChat._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -465,7 +482,7 @@ const Chat = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.post('http://localhost:5000/api/chats/group',
+      const { data } = await axios.post('https://chat-backend-s13a.onrender.com/api/chats/group',
         { name: groupName, users: selectedUsers },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -570,12 +587,20 @@ const Chat = () => {
       <div className="chat-container">
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>💬 Chats</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+            <h2>💬 Chats</h2>
+            {user && (
+              <span style={{ fontSize: '14px', color: '#999' }}>
+                ({user.username})
+              </span>
+            )}
+          </div>
           <div style={{ display: 'flex', gap: '10px' }}>
             <button 
               className="new-group-btn" 
               onClick={() => setShowRequests(!showRequests)}
               style={{ position: 'relative' }}
+              title="Friend Requests"
             >
               🔔 {friendRequests.length > 0 && (
                 <span style={{
@@ -595,11 +620,27 @@ const Chat = () => {
                 </span>
               )}
             </button>
-            <button className="new-group-btn" onClick={() => setShowAllUsers(!showAllUsers)}>
+            <button 
+              className="new-group-btn" 
+              onClick={() => setShowAllUsers(!showAllUsers)}
+              title="All Users"
+            >
               👥
             </button>
-            <button className="new-group-btn" onClick={() => setShowGroupModal(true)}>
+            <button 
+              className="new-group-btn" 
+              onClick={() => setShowGroupModal(true)}
+              title="Create Group"
+            >
               + Group
+            </button>
+            <button 
+              className="new-group-btn" 
+              onClick={handleLogout}
+              style={{ background: '#dc3545' }}
+              title="Logout"
+            >
+              🚪
             </button>
           </div>
         </div>

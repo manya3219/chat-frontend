@@ -49,6 +49,15 @@
   transform: scale(1.05);
 }
 
+.new-group-btn[title="Logout"] {
+  background: #dc3545;
+}
+
+.new-group-btn[title="Logout"]:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
 .search-box {
   padding: 15px;
   background: #2d2d2d;
