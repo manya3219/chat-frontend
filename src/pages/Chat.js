@@ -587,7 +587,7 @@ const Chat = () => {
       <div className="chat-container">
       <div className="sidebar">
         <div className="sidebar-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
             <h2>💬 Chats</h2>
             {user && (
               <span style={{ fontSize: '14px', color: '#999' }}>
@@ -595,7 +595,7 @@ const Chat = () => {
               </span>
             )}
           </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px', width: '100%' }}>
             <button 
               className="new-group-btn" 
               onClick={() => setShowRequests(!showRequests)}
@@ -625,7 +625,7 @@ const Chat = () => {
               onClick={() => setShowAllUsers(!showAllUsers)}
               title="All Users"
             >
-              👥
+              Users
             </button>
             <button 
               className="new-group-btn" 
@@ -633,14 +633,6 @@ const Chat = () => {
               title="Create Group"
             >
               + Group
-            </button>
-            <button 
-              className="new-group-btn" 
-              onClick={handleLogout}
-              style={{ background: '#dc3545' }}
-              title="Logout"
-            >
-              🚪
             </button>
           </div>
         </div>
@@ -782,10 +774,6 @@ const Chat = () => {
           </div>
         </div>
 
-        <div className="search-box">
-          <input type="text" placeholder="Search chats..." />
-        </div>
-
         <div className="chat-list">
           {/* Individual Chats Section */}
           {individualChats.length > 0 && (
@@ -840,6 +828,18 @@ const Chat = () => {
               </p>
             </div>
           )}
+        </div>
+
+        {/* Footer with Logout Button */}
+        <div className="sidebar-footer">
+          <button 
+            className="footer-logout-btn" 
+            onClick={handleLogout}
+            title="Logout"
+          >
+            <span className="logout-icon">🚪</span>
+            <span className="logout-text">Logout</span>
+          </button>
         </div>
       </div>
 

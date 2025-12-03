@@ -24,8 +24,7 @@
   background: #2d2d2d;
   border-bottom: 1px solid #3a3a3a;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 
 .sidebar-header h2 {
@@ -37,11 +36,13 @@
   background: #FF6B35;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 15px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .new-group-btn:hover {
@@ -591,4 +592,57 @@
   50% {
     background: rgba(255, 107, 53, 0.2);
   }
+}
+
+/* Footer Styles */
+.sidebar-footer {
+  padding: 15px 20px;
+  background: #2d2d2d;
+  border-top: 1px solid #3a3a3a;
+}
+
+.footer-logout-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.footer-logout-btn:hover {
+  background: #c82333;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.logout-icon {
+  font-size: 18px;
+}
+
+.logout-text {
+  font-size: 14px;
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-follow {
+  color: #FF6B35;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 53, 0.3);
 }
