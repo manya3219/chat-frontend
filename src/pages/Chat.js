@@ -10,7 +10,7 @@ const ENDPOINT = 'https://chat-backend-s13a.onrender.com';
 let socket;
 
 // Memoized ChatItem component to prevent unnecessary re-renders
-const ChatItem = memo(({ chat, isActive, onSelect, getChatAvatar, getChatName }) => (
+const ChatItem = memo(({ chat, isActive, onSelect, getChatAvatar, getChatName, unreadCount }) => (
   <div
     className={`chat-item ${isActive ? 'active' : ''}`}
     onClick={() => onSelect(chat)}
@@ -29,6 +29,9 @@ const ChatItem = memo(({ chat, isActive, onSelect, getChatAvatar, getChatName })
         )}
       </div>
     </div>
+    {unreadCount > 0 && (
+      <div className="unread-badge">{unreadCount}</div>
+    )}
   </div>
 ));
 
@@ -52,6 +55,7 @@ const Chat = () => {
   const [notification, setNotification] = useState(null);
   const [showChatMenu, setShowChatMenu] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [unreadCounts, setUnreadCounts] = useState({}); // Track unread messages per chat
   const messagesEndRef = useRef(null);
   const selectedChatRef = useRef(null);
   const navigate = useNavigate();
@@ -125,6 +129,12 @@ const Chat = () => {
           chatId: message.chat._id,
           avatar: message.sender.avatar
         });
+        
+        // Increment unread count for this chat
+        setUnreadCounts(prev => ({
+          ...prev,
+          [message.chat._id]: (prev[message.chat._id] || 0) + 1
+        }));
         
         // Auto-hide notification after 5 seconds
         setTimeout(() => setNotification(null), 5000);
@@ -383,6 +393,12 @@ const Chat = () => {
     selectedChatRef.current = chat;
     fetchMessages(chat._id);
     setIsMobileSidebarOpen(false); // Close sidebar on mobile when chat is selected
+    
+    // Clear unread count for this chat
+    setUnreadCounts(prev => ({
+      ...prev,
+      [chat._id]: 0
+    }));
   };
 
   const handleUserClick = async (userId, isFriend) => {
@@ -819,6 +835,7 @@ const Chat = () => {
                   onSelect={handleChatSelect}
                   getChatAvatar={getChatAvatar}
                   getChatName={getChatName}
+                  unreadCount={unreadCounts[chat._id] || 0}
                 />
               ))}
             </>
@@ -839,6 +856,7 @@ const Chat = () => {
                   onSelect={handleChatSelect}
                   getChatAvatar={getChatAvatar}
                   getChatName={getChatName}
+                  unreadCount={unreadCounts[chat._id] || 0}
                 />
               ))}
             </>
@@ -876,6 +894,12 @@ const Chat = () => {
         {selectedChat ? (
           <>
             <div className="chat-header">
+              <button 
+                className="hamburger-btn"
+                onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+              >
+                ☰
+              </button>
               <img src={getChatAvatar(selectedChat)} alt="" className="avatar" />
               <div style={{ flex: 1 }}>
                 <h3>
