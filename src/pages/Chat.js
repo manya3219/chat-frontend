@@ -617,7 +617,10 @@ const Chat = () => {
       {selectedChat && (
         <button 
           className="mobile-back-btn"
-          onClick={() => setSelectedChat(null)}
+          onClick={() => {
+            setSelectedChat(null);
+            setIsMobileSidebarOpen(true); // Open sidebar when going back
+          }}
         >
           ← Back
         </button>
