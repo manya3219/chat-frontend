@@ -13,6 +13,7 @@
 
 .sidebar {
   width: 350px;
+  min-width: 350px;
   background: #252525;
   border-right: 1px solid #3a3a3a;
   display: flex;
@@ -84,18 +85,24 @@
 @media (max-width: 768px) {
   .chat-container {
     flex-direction: column;
+    overflow-x: hidden;
   }
 
   .sidebar {
-    width: 100%;
-    max-width: 100%;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     border-right: none;
     border-bottom: 1px solid #3a3a3a;
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
   }
 
   .chat-area {
-    width: 100%;
+    width: 100% !important;
     flex: 1;
+    height: 50vh;
   }
 
   .hamburger-btn {
