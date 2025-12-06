@@ -1011,6 +1011,13 @@ const Chat = () => {
           </>
         ) : (
           <div className="no-chat-selected">
+            <button 
+              className="hamburger-btn mobile-only"
+              onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+              style={{ position: 'absolute', top: '20px', left: '20px' }}
+            >
+              ☰
+            </button>
             <h2>💬 Welcome to Chat App</h2>
             <p>Select a chat to start messaging</p>
           </div>

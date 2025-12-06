@@ -76,6 +76,10 @@
   border-radius: 8px;
 }
 
+.hamburger-btn.mobile-only {
+  display: none;
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .chat-container {
@@ -99,6 +103,10 @@
   }
 
   .hamburger-btn {
+    display: block;
+  }
+
+  .hamburger-btn.mobile-only {
     display: block;
   }
 
