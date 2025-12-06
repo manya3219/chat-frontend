@@ -81,28 +81,114 @@
   display: none;
 }
 
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: #FF6B35;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.mobile-menu-toggle:hover {
+  background: #ff8555;
+  transform: scale(1.05);
+}
+
+/* Mobile Back Button */
+.mobile-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: #FF6B35;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.mobile-back-btn:hover {
+  background: #ff8555;
+}
+
+/* Mobile Sidebar Overlay */
+.mobile-sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .mobile-back-btn {
+    display: block;
+  }
+
+  .mobile-sidebar-overlay {
+    display: block;
+  }
+
   .chat-container {
-    flex-direction: column;
-    overflow-x: hidden;
+    flex-direction: row;
+    position: relative;
   }
 
   .sidebar {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    border-right: none;
-    border-bottom: 1px solid #3a3a3a;
-    height: auto;
-    max-height: 50vh;
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 80% !important;
+    min-width: 80% !important;
+    max-width: 300px !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid #3a3a3a;
+    border-bottom: none;
     overflow-y: auto;
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
   }
 
   .chat-area {
     width: 100% !important;
-    flex: 1;
-    height: 50vh;
+    height: 100vh !important;
   }
 
   .hamburger-btn {

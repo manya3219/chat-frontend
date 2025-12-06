@@ -630,7 +630,7 @@ const Chat = () => {
       />
       
       <div className="chat-container">
-      <div className="sidebar">
+      <div className={`sidebar ${isMobileSidebarOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
             <h2>💬 Chats</h2>
