@@ -85,9 +85,14 @@
   .sidebar {
     position: relative;
     display: flex;
+    width: 350px;
   }
 
-  .hamburger-btn {
+  .chat-area {
+    flex: 1;
+  }
+
+  .hamburger-btn.back-btn {
     display: none !important;
   }
 
@@ -103,7 +108,7 @@
     overflow: hidden;
   }
 
-  /* Sidebar always visible on mobile (WhatsApp style) */
+  /* Sidebar - show by default */
   .sidebar {
     position: absolute;
     left: 0;
@@ -111,7 +116,9 @@
     height: 100vh;
     width: 100%;
     z-index: 10;
+    background: #252525;
     transition: transform 0.3s ease;
+    transform: translateX(0);
   }
 
   /* Hide sidebar when chat is selected */
@@ -119,23 +126,26 @@
     transform: translateX(-100%);
   }
 
-  /* Chat area */
+  /* Chat area - hidden by default */
   .chat-area {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100vh;
-    transform: translateX(100%);
+    background: #1a1a1a;
+    z-index: 5;
     transition: transform 0.3s ease;
+    transform: translateX(100%);
   }
 
   /* Show chat area when chat is selected */
   .chat-area.chat-selected {
     transform: translateX(0);
+    z-index: 15;
   }
 
-  .hamburger-btn {
+  .hamburger-btn.back-btn {
     display: block;
   }
 
