@@ -54,7 +54,7 @@ const Chat = () => {
   const [showRequests, setShowRequests] = useState(false);
   const [notification, setNotification] = useState(null);
   const [showChatMenu, setShowChatMenu] = useState(false);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(window.innerWidth >= 768); // Desktop: true, Mobile: false
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(true); // Always show chats on login (WhatsApp style)
   const [unreadCounts, setUnreadCounts] = useState({}); // Track unread messages per chat
   const messagesEndRef = useRef(null);
   const selectedChatRef = useRef(null);
@@ -216,20 +216,6 @@ const Chat = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
-  // Handle window resize for responsive sidebar
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileSidebarOpen(true); // Desktop: always show
-      } else {
-        setIsMobileSidebarOpen(false); // Mobile: hide by default
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const fetchChats = useCallback(async () => {
     try {
@@ -644,7 +630,7 @@ const Chat = () => {
       />
       
       <div className="chat-container">
-      <div className={`sidebar ${isMobileSidebarOpen ? 'mobile-open' : ''}`}>
+      <div className={`sidebar ${selectedChat ? 'chat-selected' : ''}`}>
         <div className="sidebar-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
             <h2>💬 Chats</h2>
@@ -904,15 +890,16 @@ const Chat = () => {
         </div>
       </div>
 
-      <div className="chat-area">
+      <div className={`chat-area ${selectedChat ? 'chat-selected' : ''}`}>
         {selectedChat ? (
           <>
             <div className="chat-header">
               <button 
-                className="hamburger-btn"
-                onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+                className="hamburger-btn back-btn"
+                onClick={() => setSelectedChat(null)}
+                title="Back to chats"
               >
-                ☰
+                ←
               </button>
               <img src={getChatAvatar(selectedChat)} alt="" className="avatar" />
               <div style={{ flex: 1 }}>

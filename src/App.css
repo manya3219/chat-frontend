@@ -96,26 +96,43 @@
   }
 }
 
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles - WhatsApp Style */
 @media (max-width: 768px) {
   .chat-container {
     position: relative;
+    overflow: hidden;
   }
 
+  /* Sidebar always visible on mobile (WhatsApp style) */
   .sidebar {
-    position: fixed;
-    left: -100%;
+    position: absolute;
+    left: 0;
     top: 0;
     height: 100vh;
-    width: 80%;
-    max-width: 300px;
-    z-index: 1000;
-    transition: left 0.3s ease;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.3s ease;
   }
 
-  .sidebar.mobile-open {
+  /* Hide sidebar when chat is selected */
+  .sidebar.chat-selected {
+    transform: translateX(-100%);
+  }
+
+  /* Chat area */
+  .chat-area {
+    position: absolute;
     left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Show chat area when chat is selected */
+  .chat-area.chat-selected {
+    transform: translateX(0);
   }
 
   .hamburger-btn {
@@ -123,11 +140,7 @@
   }
 
   .hamburger-btn.mobile-only {
-    display: block;
-  }
-
-  .chat-area {
-    width: 100%;
+    display: none;
   }
 
   .sidebar-header h2 {
@@ -147,33 +160,38 @@
   .message {
     max-width: 85%;
   }
+
+  /* Hide welcome screen on mobile */
+  .no-chat-selected {
+    display: none;
+  }
 }
 
-/* Unread Badge Styles */
+/* Unread Badge Styles - WhatsApp Style */
 .unread-badge {
-  background: #dc3545;
+  background: #25D366;
   color: white;
-  border-radius: 50%;
-  min-width: 24px;
-  height: 24px;
+  border-radius: 12px;
+  min-width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   padding: 0 6px;
-  animation: pulse 1s infinite;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.9;
-  }
+.chat-item {
+  position: relative;
+}
+
+.chat-item .unread-badge {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .search-box {
