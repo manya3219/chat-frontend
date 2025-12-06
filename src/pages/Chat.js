@@ -54,7 +54,7 @@ const Chat = () => {
   const [showRequests, setShowRequests] = useState(false);
   const [notification, setNotification] = useState(null);
   const [showChatMenu, setShowChatMenu] = useState(false);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(window.innerWidth >= 768); // Desktop: true, Mobile: false
   const [unreadCounts, setUnreadCounts] = useState({}); // Track unread messages per chat
   const messagesEndRef = useRef(null);
   const selectedChatRef = useRef(null);
@@ -216,6 +216,20 @@ const Chat = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Handle window resize for responsive sidebar
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileSidebarOpen(true); // Desktop: always show
+      } else {
+        setIsMobileSidebarOpen(false); // Mobile: hide by default
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchChats = useCallback(async () => {
     try {

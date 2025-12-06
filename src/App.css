@@ -80,6 +80,22 @@
   display: none;
 }
 
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .sidebar {
+    position: relative;
+    display: flex;
+  }
+
+  .hamburger-btn {
+    display: none !important;
+  }
+
+  .hamburger-btn.mobile-only {
+    display: none !important;
+  }
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .chat-container {
@@ -121,6 +137,15 @@
   .new-group-btn {
     padding: 8px 12px;
     font-size: 14px;
+  }
+
+  .chat-header .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .message {
+    max-width: 85%;
   }
 }
 
