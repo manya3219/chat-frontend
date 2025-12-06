@@ -630,7 +630,7 @@ const Chat = () => {
       />
       
       <div className="chat-container">
-      <div className={`sidebar ${selectedChat ? 'chat-selected' : ''}`}>
+      <div className="sidebar">
         <div className="sidebar-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
             <h2>💬 Chats</h2>
@@ -890,17 +890,10 @@ const Chat = () => {
         </div>
       </div>
 
-      <div className={`chat-area ${selectedChat ? 'chat-selected' : ''}`}>
+      <div className="chat-area">
         {selectedChat ? (
           <>
             <div className="chat-header">
-              <button 
-                className="hamburger-btn back-btn"
-                onClick={() => setSelectedChat(null)}
-                title="Back to chats"
-              >
-                ←
-              </button>
               <img src={getChatAvatar(selectedChat)} alt="" className="avatar" />
               <div style={{ flex: 1 }}>
                 <h3>
@@ -1012,13 +1005,6 @@ const Chat = () => {
           </>
         ) : (
           <div className="no-chat-selected">
-            <button 
-              className="hamburger-btn mobile-only"
-              onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-              style={{ position: 'absolute', top: '20px', left: '20px' }}
-            >
-              ☰
-            </button>
             <h2>💬 Welcome to Chat App</h2>
             <p>Select a chat to start messaging</p>
           </div>

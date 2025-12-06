@@ -80,77 +80,10 @@
   display: none;
 }
 
-/* Desktop Styles */
-@media (min-width: 769px) {
-  .sidebar {
-    position: relative;
-    display: flex;
-    width: 350px;
-  }
-
-  .chat-area {
-    flex: 1;
-  }
-
-  .hamburger-btn.back-btn {
-    display: none !important;
-  }
-
-  .hamburger-btn.mobile-only {
-    display: none !important;
-  }
-}
-
-/* Mobile Responsive Styles - WhatsApp Style */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-  .chat-container {
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Sidebar - show by default */
-  .sidebar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    z-index: 10;
-    background: #252525;
-    transition: transform 0.3s ease;
-    transform: translateX(0);
-  }
-
-  /* Hide sidebar when chat is selected */
-  .sidebar.chat-selected {
-    transform: translateX(-100%);
-  }
-
-  /* Chat area - hidden by default */
-  .chat-area {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    background: #1a1a1a;
-    z-index: 5;
-    transition: transform 0.3s ease;
-    transform: translateX(100%);
-  }
-
-  /* Show chat area when chat is selected */
-  .chat-area.chat-selected {
-    transform: translateX(0);
-    z-index: 15;
-  }
-
-  .hamburger-btn.back-btn {
+  .hamburger-btn {
     display: block;
-  }
-
-  .hamburger-btn.mobile-only {
-    display: none;
   }
 
   .sidebar-header h2 {
@@ -169,11 +102,6 @@
 
   .message {
     max-width: 85%;
-  }
-
-  /* Hide welcome screen on mobile */
-  .no-chat-selected {
-    display: none;
   }
 }
 
