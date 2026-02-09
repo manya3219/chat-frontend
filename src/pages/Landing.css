@@ -307,11 +307,13 @@
 
 /* Footer */
 .landing-footer {
-  position: absolute;
-  bottom: 20px;
+  position: relative;
+  margin-top: 40px;
+  padding: 20px;
   text-align: center;
   color: #666;
   font-size: 14px;
+  z-index: 1;
 }
 
 /* Responsive Design */
